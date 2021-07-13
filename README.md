@@ -35,3 +35,34 @@ for an example of this. This policy will ensure:
 
 - There are between 6 and 10 instances during daylight hours of the first week of the month
 - There are between 2 and 4 instances otherwise
+
+### How to bind an autoscaling policy to an application in GPaaS
+
+Ensure the autoscaling CLI plugin is installed:
+
+`cf install-plugin -r CF-Community app-autoscaler-plugin`
+
+Deploy your app, where APPNAME is the name of your application:
+
+`cf push APPNAME`
+
+Create an autoscaler service to scale your app:
+
+`cf create-service autoscaler autoscaler-free-plan scale-APPNAME`
+
+Note: If your organisation/space is using Terraform/IAC, this should be provided to you by default. Please speak to TechOps
+if you require assistance with this
+
+Bind the autoscaler service to your app:
+
+`cf bind-service APPNAME scale-APPNAME`
+
+Create the desired autoscaling policy (see [example_policies](example_policies))
+
+Attach the autoscaling policy to your app:
+
+`cf attach-autoscaling-policy APPNAME policy.json`
+
+Observe the app scaling automatically:
+
+`cf autoscaling-history APPNAME`
