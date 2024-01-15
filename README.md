@@ -1,4 +1,6 @@
-# ccs-autoscaling-policies
+# +++++++ARCHIVED AS NO LONGER REQUIRED+++++++
+
+### ccs-autoscaling-policies
 
 This repository contains a list of example JSON policies that can be used as a template to bind to your application on
 gov.uk PaaS
